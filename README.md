@@ -1,5 +1,6 @@
-# backend
-Everything Backend 
+# Read Easy Backend 
+### Runner up in BuildwithAi international Hackathon
+
 
 Create a virtualenv
 ```
@@ -34,4 +35,47 @@ flask run
 ```
 
 ## API Documentation
-Pending!
+
+* Auth Login /login method ="POST"
+```yaml
+{
+  email
+  password
+}
+```
+Response
+
+```yaml
+ {
+                "success": True,
+                "name": body["username"],
+                "email": body["email"],
+                "role": body["role"],
+                "id": user.id,
+  }
+```
+
+* Get all Student Courses
+
+```javascript
+@student.route("/getallcourse", methods=["GET"])
+def getallcourse():
+    result = Course.query.all()
+    courses = [course.format_short() for course in result]
+    
+    return jsonify({"message": "success","courses": courses})
+```
+
+* OCR
+
+```javascript
+@student.route("/ocr", methods=["POST"])
+def ocr():
+    f = request.get_json()
+    im = f["image"].split("base64,")[1]
+    ----------------------------------
+    return jsonify({"message": "success","prediction": class_names[np.argmax(score)]})
+```
+
+            
+
